@@ -19,45 +19,56 @@
         "神族九帝(教育)": "https://alist.shenzjd.com", 
         "课程搜索": "https://www.souke365.cn", 
         "姬路白雪": "https://pan.jlbx.xyz", 
-        "Arley": "https://pan.arley.cn/zh-CN", 
-        "Wehao": "https://file.wehaox.com",
+        "Arley's Drive": "https://pan.arley.cn/zh-CN", 
+        "Wehao's Share": "https://file.wehaox.com",
         "木木网盘": "https://apps.weixinqqq.com", 
         "星星的云盘": "http://vip.syzkgg.com:2070", 
         "Adult.Drive": "https://drive.9t.ee",
-        "DISK": "http://124.222.140.243:8080", 
         "moepan": "https://www.moepan.cf", 
         "9T(Adult)": "https://drive.9t.ee",
         "木偶":"https://www.kugutsu.ml",
         "大人番":"https://www.kugutsu.ml",
-        "梓澪の妙妙屋": "https://zi0.cc"
+        "梓澪の妙妙屋": "https://zi0.cc",
+        "小雅的精致分类": "http://101.34.67.237:5244",
+        "蜡笔小新":"https://ruipan.bestruirui.repl.co"
     },
     "Ali": {
         "token": "https://kebedd69.github.io/TVbox-interface/token.json"
     },
     "Zhibo": [
         {
-            "pf": "douyu",
-            "id": "原创IP",
+            "pf": "douyu", 
+            "id": "原创IP", 
             "name": "斗鱼-原创IP"
-        },
+        }, 
         {
-            "pf": "bilibili",
-            "id": "主机游戏",
-            "name": "B站-主机游戏"
-        },
+            "pf": "douyu", 
+            "id": "热门游戏", 
+            "name": "斗鱼-热门游戏"
+        }, 
         {
-            "pf": "huya",
-            "id": "音乐",
+            "pf": "douyu", 
+            "id": "主机游戏", 
+            "name": "斗鱼-主机游戏"
+        }, 
+        {
+            "pf": "huya", 
+            "id": "音乐", 
             "name": "虎牙-音乐"
-        },
+        }, 
         {
-            "pf": "cc",
-            "id": "主机单机",
-            "name": "网易-主机单机"
-        },
+            "pf": "huya", 
+            "id": "一起看", 
+            "name": "虎牙-一起看"
+        }, 
         {
-            "pf": "sport",
-            "id": "sport",
+            "pf": "huya", 
+            "id": "三国杀", 
+            "name": "虎牙-三国杀"
+        }, 
+        {
+            "pf": "sport", 
+            "id": "sport", 
             "name": "体育-全部"
         }
     ]

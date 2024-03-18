@@ -1,0 +1,44 @@
+{
+  "sites": [
+    { "name": "爱坤", "api": "https://ikunzyapi.com/api.php/provide/vod/from/ikm3u8/" },
+    { "name": "光速", "api": "https://api.guangsuapi.com/api.php/provide/vod/from/gsm3u8/" },
+    { "name": "量子", "api": "https://cj.lziapi.com/api.php/provide/vod/from/lzm3u8/" },
+    { "name": "红牛", "api": "https://www.hongniuzy2.com/api.php/provide/vod/from/hnm3u8/" },
+    { "name": "飞速", "api": "https://m3u8.feisuzyapi.com/api.php/provide/vod/from/fsm3u8/" },
+    { "name": "天空", "api": "https://api.tiankongapi.com/api.php/provide/vod/from/tkm3u8/" },
+    { "name": "非凡", "api": "https://cj.ffzyapi.com/api.php/provide/vod/from/ffm3u8/" },
+    { "name": "益达", "api": "https://myd666.tv/lvdou_api.php/v1.vod/" },
+    { "name": "闪电资源", "api": "http://sdzyapi.com/api.php/provide/vod/" },
+    { "name": "量子资源", "api": "https://cj.lziapi.com/api.php/provide/vod/" },
+    { "name": "天堂资源", "api": "http://vipmv.cc/api.php/provide/vod/" },
+    { "name": "淘片", "api": "https://taopianapi.com/cjapi/mc10/vod/xml.html" },
+    { "name": "悟空影院", "api": "http://dapi.pntao.com/api.php/v1.vod" },
+    { "name": "红牛资源", "api": "https://www.hongniuzy2.com/api.php/provide/vod/" },
+    { "name": "天翼资源", "api": "https://www.911ysw.top/tianyi.php/provide/vod/at/xml" },
+    { "name": "飘花影院", "api": "http://www.ahjiuman.com/api.php/provide/vod/at/xml" },
+    { "name": "热剧天堂TV", "api": "http://175.178.7.35:2020/api.php/Sntv/vod/" },
+    { "name": "无尽资源", "api": "https://api.wujinapi.cc/api.php/provide/vod/" },
+    { "name": "飞速资源", "api": "https://www.feisuzy.com/api.php/provide/vod/" },
+    { "name": "光速资源", "api": "https://api.guangsuapi.com/api.php/provide/vod/" },
+    { "name": "韩剧资源", "api": "http://www.hanjuzy.com/inc/apijson_vod.php" },
+    { "name": "U酷资源", "api": "https://api.ukuapi.com/api.php/provide/vod/" },
+    { "name": "6U资源", "api": "http://zy.ataoju.com/inc/apijson_vod.php" },
+    { "name": "八戒资源", "api": "http://cj.bajiecaiji.com/inc/apijson_vod.php" },
+    { "name": "天空资源", "api": "http://api.tiankongapi.com/api.php/provide/vod/" },
+    { "name": "百度资源", "api": "https://api.apibdzy.com/api.php/provide/vod/" },
+    { "name": "影趣视听", "api": "https://www.interesting-tv.com/rukujiekou98hjH9h.php/provide/vod/" },
+    { "name": "飘花电影", "api": "http://www.zzrhgg.com/api.php/provide/vod/" }
+  ],
+  "lives": [
+    {
+      "group": "CCTV",
+      "channels": [
+        { "name": "CCTV1", "urls": ["https://node1.olelive.com:6443/live/CCTV1HD/hls.m3u8"] },
+        { "name": "CCTV2", "urls": ["https://node1.olelive.com:6443/live/CCTV2HD/hls.m3u8"] },
+        { "name": "CCTV5", "urls": ["http://39.134.24.162/dbiptv.sn.chinamobile.com/PLTV/88888890/224/3221226395/index.m3u8"] },
+        { "name": "CCTV9", "urls": ["https://node1.olelive.com:6443/live/CCTV9HD/hls.m3u8"] },
+        { "name": "CCTV10", "urls": ["https://node1.olelive.com:6443/live/CCTV10HD/hls.m3u8"] }
+      ]
+    }
+  ]
+}

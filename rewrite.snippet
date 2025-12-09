@@ -1409,13 +1409,6 @@ https?:\/\/awg\.enmonster\.com\/apa\/(advert\/demand\/home\/poster|index\/advert
 ^https?:\/\/api\.kkmh\.com\/v\d\/ad\/show url reject-200
 ^https?:\/\/api\.kkmh\.com\/v\d\/advertisement\/ url reject-200
 
-# > 快手
-# hostname = az4-api.ksapisrv.com, az4-api-idc.ksapisrv.com, az2-api.ksapisrv.com, az2-api-idc.ksapisrv.com, apissl.gifshow.com, apissl.ksapisrv.com, az2-api-js.gifshow.com, az2-live.ksapisrv.com
-^https:\/\/az2-live\.ksapisrv\.com\/rest\/n\/live\/feed\/square\/refresh\? url jsonjq-response-body 'del(.data.banners)'
-^https:\/\/az2-api\.ksapisrv\.com\/rest\/n\/taskCenter\/task\/report\? url reject-dict
-^https:\/\/az2-api\.ksapisrv\.com\/rest\/n\/ad\/ url reject-dict
-^https:\/\/az4-api(-idc)?\.ksapisrv\.com\/rest\/n\/feed\/selectionFast\? url jsonjq-response-body 'if (.feeds | type) == "array" then .feeds |= map(select(.ad | not)) else . end'
-^https:\/\/az2-api-js\.gifshow\.com\/rest\/n\/user\/profile\/v2\? url jsonjq-response-body 'del(.postRecommends)'
 
 # > 夸克
 # hostname = open-cms-api.uc.cn, open-cms-api.quark.cn

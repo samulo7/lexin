@@ -51,7 +51,7 @@ if (!platformId) {
 function startTask() {
   const url = `https://tophub.today/n/${platformId}`;
   const headers = {
-    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', // 伪装成手机浏览器，减少被 ban 概率
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', // 伪装成手机浏览器，减少被 ban 概率
     'Accept-Language': 'zh-CN,zh;q=0.9',
   };
 
@@ -104,21 +104,18 @@ function startTask() {
 
 // 优化的正则解析
 function parseHotSearchList(html) {
-  // 解释：
-  // [\s\S]*? 非贪婪匹配任意字符（包括换行）
-  // href="\/l\?e= 匹配链接特征
-  // >([^<]+)< 捕获标签内的文本（标题）
-  
-  // 注意：原脚本的正则非常依赖 HTML 结构，这里稍微放宽了一点，但本质依然是 HTML Scraping
-  // 如果 tophub 改版，这里必须重写
-  const regex = /<td class="al">\s*<a href="\/l\?e=[^"]+"[^>]*>([\s\S]*?)<\/a>\s*<\/td>/g;
+  // 修改后的正则：不强制要求 class="al"，只要是 href="/l?e=" 开头的链接都抓
+  const regex = /<a href="\/l\?e=[^"]+"[^>]*>([\s\S]*?)<\/a>/g;
   const list = [];
   let match;
 
   while ((match = regex.exec(html)) !== null) {
-    //去除可能的换行符和多余空格
-    const keyword = match[1].replace(/[\r\n]/g, '').trim(); 
-    if(keyword) list.push(keyword);
+    // 过滤掉可能包含 HTML 标签的杂质，只留纯文本
+    let keyword = match[1].replace(/<[^>]+>/g, '').replace(/[\r\n]/g, '').trim();
+    // 过滤掉一些无意义的短词（可选）
+    if(keyword && keyword.length > 1) {
+      list.push(keyword);
+    }
   }
 
   return list;

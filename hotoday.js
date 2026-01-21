@@ -58,27 +58,21 @@ function startTask() {
   const handler = (error, response, body) => {
     if (error) {
       console.log(`[热榜] 网络错误: ${error}`);
-      notify(`${config.platform}热榜`, '', '获取失败，请检查网络或节点');
       $done();
       return;
     }
 
-    // 检查 HTTP 状态码
-    if (response.status && response.status !== 200) {
-      console.log(`[热榜] 异常状态码: ${response.status}`);
-      notify(`${config.platform}热榜`, '', `服务器返回异常: ${response.status} (可能是反爬拦截)`);
-      $done();
-      return;
-    }
+    // 核心调试代码：看看服务器到底给脚本返回了什么鬼东西
+    console.log(`[调试] 状态码: ${response.status}`);
+    console.log(`[调试] HTML内容预览: ${body.slice(0, 300)}`); // 打印前300个字符
 
     const hotSearchList = parseHotSearchList(body);
     
     if (hotSearchList.length === 0) {
-      console.log(`[热榜] 解析失败，HTML 内容可能已变动或遇到验证码`);
-      // 可选：打印 body 查看是否被 Cloudflare 拦截
-      // console.log(body); 
-      notify(`${config.platform}热榜`, '', '解析数据为空，可能网站改版或触发反爬');
+      console.log(`[失败] 正则匹配数为0，这说明返回的不是正常的网页。`);
+      notify(`${config.platform}热榜`, '', '获取失败：可能被 Cloudflare 拦截');
     } else {
+      // 成功逻辑
       const notificationContent = hotSearchList
         .slice(0, config.count)
         .map((keyword, index) => `${index + 1}. ${keyword}`)
@@ -87,7 +81,6 @@ function startTask() {
     }
     $done();
   };
-
   // 适配不同环境的网络请求
   if (typeof $task !== 'undefined') {
     $task.fetch({ url, headers }).then(

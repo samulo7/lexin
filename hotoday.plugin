@@ -1,0 +1,10 @@
+#!name=今日平台热榜
+#!desc=平台热榜面板。在platform=和count=中填入参数 platform参数有：微博 知乎 微信 今日头条 澎湃 百度 36氪 少数派 财新 ZAKER 新京报 南方周末 科普中国 威锋网 起点小说 纵横小说 北美票房。不填默认今日头条。count是显示条数 不填默认显示6条。示例：platform=微博&count=4。Loon用户可以在插件里可视化配置参数（该插件仅做为示例 其他插件懒得改了）
+#!homepage=https://yfamilys.com
+#!input=platform
+#!input=count
+
+
+[Script]
+cron "16 16 16 ? * *" script-path=https://raw.githubusercontent.com/samulo7/lexin/refs/heads/main/hotoday.js, timeout=10, tag=今日平台热榜, argument="platform=&count="
+📺

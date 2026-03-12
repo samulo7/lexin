@@ -2,45 +2,58 @@
 
 set -e
 
-MIRROR="https://proxy.775774.xyz"
+PROXY="http://35.212.182.155:3128"
 
-echo ">>> 配置 Docker 镜像加速..."
-
-# 备份原有配置
-if [ -f /etc/docker/daemon.json ]; then
-    cp /etc/docker/daemon.json /etc/docker/daemon.json.bak
-    echo ">>> 已备份原配置到 daemon.json.bak"
-fi
-
-# 写入配置
-cat > /etc/docker/daemon.json << EOF
-{
-  "registry-mirrors": ["${MIRROR}"]
-}
+echo ">>> 配置系统全局代理..."
+cat >> /etc/profile << EOF
+export http_proxy=${PROXY}
+export https_proxy=${PROXY}
+export no_proxy=localhost,127.0.0.1,内网IP段
 EOF
+source /etc/profile
 
-# 重启 Docker
-echo ">>> 重启 Docker..."
+echo ">>> 配置 Docker 代理..."
+mkdir -p /etc/systemd/system/docker.service.d
+cat > /etc/systemd/system/docker.service.d/proxy.conf << EOF
+[Service]
+Environment="HTTP_PROXY=${PROXY}"
+Environment="HTTPS_PROXY=${PROXY}"
+Environment="NO_PROXY=localhost,127.0.0.1"
+EOF
 systemctl daemon-reload
 systemctl restart docker
 
-# 验证配置
-echo ">>> 验证配置..."
-if docker info 2>/dev/null | grep -q "$MIRROR"; then
-    echo "✅ 镜像加速配置成功: $MIRROR"
+echo ">>> 配置 Git 代理..."
+git config --global http.proxy ${PROXY}
+git config --global https.proxy ${PROXY}
+
+echo ">>> 配置 npm 代理..."
+npm config set proxy ${PROXY}
+npm config set https-proxy ${PROXY}
+
+echo ">>> 验证代理连通性..."
+if curl -sx ${PROXY} https://www.google.com -o /dev/null; then
+    echo "✅ 代理连通正常"
 else
-    echo "❌ 配置失败，请检查 /etc/docker/daemon.json"
+    echo "❌ 代理连通失败，请检查国外服务器是否正常"
     exit 1
 fi
 
-# 验证拉取
-echo ">>> 测试拉取 hello-world..."
+echo ">>> 验证 Docker..."
 if docker pull hello-world > /dev/null 2>&1; then
-    echo "✅ 镜像拉取测试成功"
+    echo "✅ Docker 代理正常"
     docker rmi hello-world > /dev/null 2>&1
 else
-    echo "❌ 镜像拉取失败，请检查代理服务是否正常"
+    echo "❌ Docker 代理失败"
     exit 1
 fi
 
-echo ">>> 全部完成！后续直接使用 docker pull 即可自动走加速代理"
+echo ">>> 验证 Git..."
+if git ls-remote https://github.com/torvalds/linux.git HEAD > /dev/null 2>&1; then
+    echo "✅ Git 代理正常"
+else
+    echo "❌ Git 代理失败"
+    exit 1
+fi
+
+echo ">>> 全部完成！"

@@ -41,7 +41,7 @@ else
 fi
 
 echo ">>> 验证代理连通性..."
-if curl -sx ${PROXY} https://www.google.com -o /dev/null; then
+if curl -x ${PROXY} https://www.google.com -I --silent | grep -q "200"; then
     echo "✅ 代理连通正常"
 else
     echo "❌ 代理连通失败"
